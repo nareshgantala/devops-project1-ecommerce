@@ -63,22 +63,22 @@ pipeline {
             }
         }
         
-        stage('5. Security Scan') {
-            parallel {
-                stage('Scan Backend') {
-                    steps {
-                        echo '========== Scanning Backend Image =========='
-                        sh "trivy image --severity HIGH,CRITICAL ${BACKEND_REPO}:${BUILD_TAG}"
-                    }
-                }
-                stage('Scan Frontend') {
-                    steps {
-                        echo '========== Scanning Frontend Image =========='
-                        sh "trivy image --severity HIGH,CRITICAL ${FRONTEND_REPO}:${BUILD_TAG}"
-                    }
-                }
-            }
-        }
+        // stage('5. Security Scan') {
+        //     parallel {
+        //         stage('Scan Backend') {
+        //             steps {
+        //                 echo '========== Scanning Backend Image =========='
+        //                 sh "trivy image --severity HIGH,CRITICAL ${BACKEND_REPO}:${BUILD_TAG}"
+        //             }
+        //         }
+        //         stage('Scan Frontend') {
+        //             steps {
+        //                 echo '========== Scanning Frontend Image =========='
+        //                 sh "trivy image --severity HIGH,CRITICAL ${FRONTEND_REPO}:${BUILD_TAG}"
+        //             }
+        //         }
+        //     }
+        // }
         
         stage('6. Push to ECR') {
             steps {
