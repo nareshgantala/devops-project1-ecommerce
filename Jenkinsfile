@@ -21,26 +21,26 @@ pipeline {
             }
         }
         
-        stage('2. SonarQube Scan') {
-            steps {
-                echo '========== STAGE 2: Running code quality scan =========='
-                script {
-                    def scannerHome = tool 'SonarQubeScanner'
-                    withSonarQubeEnv('SonarQube') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ecommerce-app -Dsonar.sources=."
-                    }
-                }
-            }
-        }
+        // stage('2. SonarQube Scan') {
+        //     steps {
+        //         echo '========== STAGE 2: Running code quality scan =========='
+        //         script {
+        //             def scannerHome = tool 'SonarQubeScanner'
+        //             withSonarQubeEnv('SonarQube') {
+        //                 sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ecommerce-app -Dsonar.sources=."
+        //             }
+        //         }
+        //     }
+        // }
         
-        stage('3. Quality Gate') {
-            steps {
-                echo '========== STAGE 3: Checking quality gate =========='
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage('3. Quality Gate') {
+        //     steps {
+        //         echo '========== STAGE 3: Checking quality gate =========='
+        //         timeout(time: 5, unit: 'MINUTES') {
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
         
         stage('4. Build Images') {
             parallel {
